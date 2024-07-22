@@ -1,22 +1,23 @@
 .anagram-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .anagram-table th, .anagram-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .anagram-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .anagram-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .anagram-table tr:hover {
-    background-color: #ddd;
-  }
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.anagram-table th,
+.anagram-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.anagram-table th {
+  background-color: #f2f2f2;
+}
+
+.anagram-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.anagram-table tr:hover {
+  background-color: #ddd;
+}

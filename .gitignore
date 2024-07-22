@@ -4,3 +4,10 @@ target/
 node_modules/
 src/main/frontend/generated/
 vite.generated.ts
+
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -32,6 +32,18 @@ public class AnagramService {
         return repository.findAnagramByOrderedInputAndInputNot(orderString(input), input);
     }
 
+    public List<Anagram> getAllAnagrams() {
+        return repository.findAll();
+    }
+
+    public void deleteAnagramByInput(String input) {
+        this.repository.findById(input).ifPresent(this.repository::delete);
+    }
+
+    public void deleteAllAnagrams() {
+        this.repository.deleteAll();
+    }
+
     private Anagram saveAnagram(String input) {
         return repository.findById(input).orElseGet(() -> repository.save(new Anagram(input)));
     }
