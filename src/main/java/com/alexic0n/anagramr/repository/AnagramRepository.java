@@ -5,11 +5,13 @@ import org.springframework.stereotype.Repository;
 
 import com.alexic0n.anagramr.model.Anagram;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
-public interface AnagramRepository extends JpaRepository<Anagram, String> {
-    List<Anagram> findByOrderedInput(String orderedInput);
+public interface AnagramRepository extends JpaRepository<Anagram, Long> {
 
-    List<Anagram> findAnagramByOrderedInputAndInputNot(String orderedInput, String input);
+    Optional<Anagram> findByInput(String input);
+
+    List<Anagram> findByOrderedInputAndInputNot(String orderedInput, String input);
 }

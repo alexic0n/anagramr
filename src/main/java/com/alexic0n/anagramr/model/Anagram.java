@@ -1,8 +1,6 @@
 package com.alexic0n.anagramr.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-import static com.alexic0n.anagramr.util.AnagramUtil.orderString;
+import static com.alexic0n.anagramr.util.AnagramUtil.orderAndSanitizeString;
 
 @Entity
 @Getter
@@ -20,6 +18,10 @@ import static com.alexic0n.anagramr.util.AnagramUtil.orderString;
 public class Anagram {
 
     @Id
+    @GeneratedValue
+    Long id;
+
+    @Column(unique=true)
     private String input;
 
     private String orderedInput;
@@ -34,7 +36,7 @@ public class Anagram {
 
     @PrePersist
     private void setRequiredFields() {
-        this.orderedInput = orderString(input);
+        this.orderedInput = orderAndSanitizeString(input);
         this.createdDateTime = LocalDateTime.now();
     }
 

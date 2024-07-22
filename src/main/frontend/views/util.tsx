@@ -54,6 +54,7 @@ export default function UtilView() {
           <table className="anagram-table">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Input</th>
                 <th>Ordered Input</th>
                 <th>Created Date Time</th>
@@ -63,15 +64,16 @@ export default function UtilView() {
             <tbody>
               {anagrams.value.map((anagram, index) => (
                 <tr key={index}>
+                  <td>{anagram.id}</td>
                   <td>{anagram.input}</td>
                   <td>{anagram.orderedInput}</td>
                   <td>{anagram.createdDateTime}</td>
-                  {anagram.input !== undefined && (
+                  {anagram.id !== undefined && (
                     <td>
                       <Button
                         onClick={async () => {
-                          if (anagram.input !== undefined) {
-                            await AnagramService.deleteAnagramByInput(anagram.input).then(() => {
+                          if (anagram.id !== undefined) {
+                            await AnagramService.deleteAnagramById(anagram.id).then(() => {
                               Notification.show('Deleted anagram.');
                               retrieveAnagrams();
                             })

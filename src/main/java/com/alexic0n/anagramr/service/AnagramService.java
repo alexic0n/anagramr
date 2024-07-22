@@ -9,7 +9,7 @@ import com.vaadin.hilla.BrowserCallable;
 
 import java.util.List;
 
-import static com.alexic0n.anagramr.util.AnagramUtil.orderString;
+import static com.alexic0n.anagramr.util.AnagramUtil.orderAndSanitizeString;
 
 @BrowserCallable
 @AnonymousAllowed
@@ -29,15 +29,15 @@ public class AnagramService {
     }
 
     public List<Anagram> getAllAnagramsOfInput(String input) {
-        return repository.findAnagramByOrderedInputAndInputNot(orderString(input), input);
+        return repository.findByOrderedInputAndInputNot(orderAndSanitizeString(input), input);
     }
 
     public List<Anagram> getAllAnagrams() {
         return repository.findAll();
     }
 
-    public void deleteAnagramByInput(String input) {
-        this.repository.findById(input).ifPresent(this.repository::delete);
+    public void deleteAnagramById(Long id) {
+        this.repository.findById(id).ifPresent(this.repository::delete);
     }
 
     public void deleteAllAnagrams() {
@@ -45,7 +45,7 @@ public class AnagramService {
     }
 
     private Anagram saveAnagram(String input) {
-        return repository.findById(input).orElseGet(() -> repository.save(new Anagram(input)));
+        return repository.findByInput(input).orElseGet(() -> repository.save(new Anagram(input)));
     }
     
 }

@@ -6,10 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class AnagramServiceTest {
 
     @Autowired
@@ -56,13 +58,13 @@ class AnagramServiceTest {
     }
 
     @Test
-    void deleteAnagramByInput() {
+    void deleteAnagramById() {
         String originalInput = "test";
         String anagramOfOriginal = "tset";
         String notAnagramOfOriginal = "blah";
         service.isAnagram(originalInput, notAnagramOfOriginal);
         service.isAnagram(originalInput, anagramOfOriginal);
-        service.deleteAnagramByInput(anagramOfOriginal);
+        service.deleteAnagramById(service.getAllAnagramsOfInput(anagramOfOriginal).getFirst().getId());
         assertEquals(2, service.getAllAnagrams().size());
     }
 

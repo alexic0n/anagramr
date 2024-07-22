@@ -43,6 +43,7 @@ export default function Function2View() {
           <table className="anagram-table">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Input</th>
                 <th>Ordered Input</th>
                 <th>Created Date Time</th>
@@ -51,6 +52,7 @@ export default function Function2View() {
             <tbody>
               {result.value.map((anagram, index) => (
                 <tr key={index}>
+                  <td>{anagram.id}</td>
                   <td>{anagram.input}</td>
                   <td>{anagram.orderedInput}</td>
                   <td>{anagram.createdDateTime}</td>
